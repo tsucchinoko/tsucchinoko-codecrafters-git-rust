@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+use std::path::PathBuf;
 
 #[derive(Parser)]
 pub struct Cli {
@@ -19,5 +20,15 @@ pub enum SubCommands {
 
         /// The object to cat
         hash: String,
+    },
+
+    /// Compute object ID and optionally creates a blob from a file
+    HashObject {
+        /// Write the object into the object database
+        #[arg(short)]
+        write: bool,
+
+        /// The file to hash
+        file: PathBuf,
     },
 }
