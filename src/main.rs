@@ -7,6 +7,7 @@ use std::fs;
 
 mod cat_file;
 mod cli;
+mod commit_tree;
 mod hash_object;
 mod ls_tree;
 mod object;
@@ -51,6 +52,15 @@ fn main() -> Result<()> {
                 let hash = write_tree::write_tree(".")?;
                 println!("{}", hash);
             }
+            cli::SubCommands::CommitTree {
+                hash,
+                parent_hash,
+                message,
+            } => {
+                let hash = commit_tree::commit_tree(hash, parent_hash, message)?;
+                println!("{}", hash);
+            }
+        
          }
     
         Ok(())

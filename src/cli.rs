@@ -44,4 +44,15 @@ pub enum SubCommands {
 
     /// Creates a tree object
     WriteTree,
+
+    /// Create a new commit object
+    CommitTree {
+        hash: String,
+        
+        #[arg(short)]
+        parent_hash: String,
+
+        #[arg(short)]
+        message: String,
+    }
 }
